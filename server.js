@@ -12,7 +12,7 @@ app.get("/", (req, res) => {
   res.json({ message: "Welcome to Student Management Application." });
 });
 app.use("/api", schoolRoutes);
-const PORT = process.env.PORT || 2378;
+const PORT = process.env.PORT || 8080;
 
 db.query("SELECT 1")
   .then(() => {

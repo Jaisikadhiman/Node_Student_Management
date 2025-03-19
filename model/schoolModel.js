@@ -1,7 +1,7 @@
 const db = require("../connection/db");
 const addSchool = async (id, name, address, latitude, longitude) => {
   const query = `
-      INSERT INTO schools (id,name, address, latitude, longitude) 
+      INSERT INTO school (id,name, address, latitude, longitude) 
       VALUES (?,?, ?, ?, ?)
     `;
   const [result] = await db.query(query, [
@@ -30,15 +30,15 @@ const getSchoolsSortedByProximity = async (userLatitude, userLongitude) => {
                 SIN(RADIANS(?)) * SIN(RADIANS(latitude))
             )
         ) AS distance
-      FROM schools
+      FROM school
       ORDER BY distance ASC;
     `;
-  const [schools] = await db.query(query, [
+  const [school] = await db.query(query, [
     userLatitude,
     userLongitude,
     userLatitude,
   ]);
-  return schools;
+  return school;
 };
 
 module.exports = { addSchool, getSchoolsSortedByProximity };
